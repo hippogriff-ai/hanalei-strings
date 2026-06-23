@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { IS_TOUCH } from "./TouchControls";
 
-type Row = { keys: string[]; sep?: string; keys2?: string[]; label: string };
+type Row = { keys: string[]; label: string };
 
-const ROWS: Row[] = [
+const KEYBOARD_ROWS: Row[] = [
   { keys: ["drag"], label: "Look around" },
   { keys: ["W", "A", "S", "D"], label: "Walk around" },
   { keys: ["↑", "↓", "←", "→"], label: "…or arrow keys" },
@@ -12,18 +13,26 @@ const ROWS: Row[] = [
   { keys: ["click a dot"], label: "Buy an item" },
 ];
 
+const TOUCH_ROWS: Row[] = [
+  { keys: ["1 finger drag"], label: "Look around" },
+  { keys: ["◉ joystick"], label: "Walk (bottom-left)" },
+  { keys: ["↑", "↓"], label: "Up / down (bottom-right)" },
+  { keys: ["tap a dot"], label: "Buy an item" },
+];
+
 export function Controls() {
   const [open, setOpen] = useState(true);
+  const rows = IS_TOUCH ? TOUCH_ROWS : KEYBOARD_ROWS;
 
   if (!open)
     return (
-      <button className="controls-reopen" onClick={() => setOpen(true)}>
-        ⌨ Controls
+      <button className={"controls-reopen" + (IS_TOUCH ? " touch" : "")} onClick={() => setOpen(true)}>
+        {IS_TOUCH ? "How to move" : "⌨ Controls"}
       </button>
     );
 
   return (
-    <div className="controls-card">
+    <div className={"controls-card" + (IS_TOUCH ? " touch" : "")}>
       <div className="controls-head">
         <span>How to move</span>
         <button className="controls-x" onClick={() => setOpen(false)} aria-label="Hide controls">
@@ -31,7 +40,7 @@ export function Controls() {
         </button>
       </div>
       <div className="controls-rows">
-        {ROWS.map((r, i) => (
+        {rows.map((r, i) => (
           <div className="controls-row" key={i}>
             <span className="controls-keys">
               {r.keys.map((k, j) => (

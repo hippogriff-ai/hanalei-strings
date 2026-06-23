@@ -102,14 +102,23 @@ export function FlyNav() {
     const right = new Vector3().crossVectors(fwd, new Vector3(0, 1, 0)).normalize();
 
     const move = new Vector3();
+    // keyboard (digital)
     if (k["KeyW"] || k["ArrowUp"]) move.add(fwd);
     if (k["KeyS"] || k["ArrowDown"]) move.addScaledVector(fwd, -1);
     if (k["KeyD"] || k["ArrowRight"]) move.add(right);
     if (k["KeyA"] || k["ArrowLeft"]) move.addScaledVector(right, -1);
     if (k["KeyE"] || k["KeyR"] || k["Space"] || k["PageUp"]) move.y += 1;
-    if (k["KeyQ"] || k["KeyF"] || k["ShiftLeft"] || k["PageDown"]) move.y -= 1;
+    if (k["KeyF"] || k["KeyQ"] || k["ShiftLeft"] || k["PageDown"]) move.y -= 1;
+    // touch joystick + up/down buttons (analog)
+    const tn = useStore.getState().touchNav;
+    move.addScaledVector(fwd, -tn.y);
+    move.addScaledVector(right, tn.x);
+    move.y += tn.vert;
 
-    if (move.lengthSq() > 0) camera.position.addScaledVector(move.normalize(), v);
+    if (move.lengthSq() > 0) {
+      if (move.lengthSq() > 1) move.normalize(); // cap speed, keep analog below 1
+      camera.position.addScaledVector(move, v);
+    }
   });
 
   return null;

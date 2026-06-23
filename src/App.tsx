@@ -12,6 +12,7 @@ import { Receipts } from "./ui/Receipts";
 import { ShopifyCheckout } from "./ui/ShopifyCheckout";
 import { EditPanel } from "./ui/EditPanel";
 import { Controls } from "./ui/Controls";
+import { TouchControls } from "./ui/TouchControls";
 import { LoadingScreen } from "./ui/LoadingScreen";
 import { useStore } from "./store";
 
@@ -40,7 +41,12 @@ export default function App() {
 
       <TopBar />
 
-      {!editing && view === "world" && <Controls />}
+      {!editing && view === "world" && (
+        <>
+          <Controls />
+          <TouchControls />
+        </>
+      )}
 
       <Receipts />
 

@@ -59,6 +59,7 @@ interface State {
   splatFlip: boolean;
   splatYaw: number; // 0..3 → 0/90/180/270°
   splatSpan: number; // scene size, for movement speed
+  touchNav: { x: number; y: number; vert: number }; // on-screen joystick + up/down
 
   setMode: (m: Mode) => void;
   setTourActive: (b: boolean) => void;
@@ -71,6 +72,7 @@ interface State {
   toggleFlip: () => void;
   rotateYaw: () => void;
   setSplatSpan: (n: number) => void;
+  setTouchNav: (v: Partial<{ x: number; y: number; vert: number }>) => void;
   takeTheWheel: () => void;
   setView: (v: View) => void;
   setPlace: (p: Place) => void;
@@ -115,6 +117,7 @@ export const useStore = create<State>((set, get) => ({
   splatFlip: loadOrient().flip,
   splatYaw: loadOrient().yaw,
   splatSpan: 4,
+  touchNav: { x: 0, y: 0, vert: 0 },
 
   setMode: (m) => set({ mode: m }),
   setTourActive: (b) => set({ tourActive: b }),
@@ -144,6 +147,7 @@ export const useStore = create<State>((set, get) => ({
       return { splatYaw: y };
     }),
   setSplatSpan: (n) => set({ splatSpan: n }),
+  setTouchNav: (v) => set((s) => ({ touchNav: { ...s.touchNav, ...v } })),
   takeTheWheel: () => set({ mode: "freeroam" }),
   setView: (v) => set({ view: v }),
   setPlace: (p) => set({ place: p }),
