@@ -1,0 +1,31 @@
+{
+  "name": "hanalei-strings-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "One experience, two audiences, one Shopify source of truth — a shoppable virtual-tour demo for Hanalei Strings.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "@sparkjsdev/spark": "^2.1.0",
+    "framer-motion": "11.11.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "^0.180.0",
+    "zustand": "4.5.5"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.0",
+    "@types/three": "^0.180.0",
+    "@vitejs/plugin-react": "4.3.2",
+    "playwright": "^1.48.0",
+    "typescript": "5.6.3",
+    "vite": "5.4.8"
+  }
+}
