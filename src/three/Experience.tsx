@@ -6,9 +6,11 @@ import { Placer } from "./Placer";
 import { FlyNav } from "./FlyNav";
 
 export function Experience() {
-  // hidden override: /#splat=/your.spz swaps the asset without a rebuild
+  // hidden override: /#splat=/your.spz swaps the asset without a rebuild.
+  // default resolves against the Vite base so it works at github.io/<repo>/ too.
   const src =
-    (typeof window !== "undefined" && window.location.hash.match(/splat=([^&\s]+)/)?.[1]) || "/shop.spz";
+    (typeof window !== "undefined" && window.location.hash.match(/splat=([^&\s]+)/)?.[1]) ||
+    import.meta.env.BASE_URL + "shop.spz";
 
   return (
     <Canvas

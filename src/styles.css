@@ -338,6 +338,27 @@ canvas { display: block; }
 .pr-hint { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 40;
   font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(243,233,215,0.6); }
 
+/* ── Passcode gate ───────────────────────────────────────── */
+.gate { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+  background: radial-gradient(120% 120% at 50% 30%, #0f3a3a, var(--sea-900)); }
+.gate-card { position: relative; z-index: 1; text-align: center; width: min(380px, 90vw); padding: 8px 24px; }
+.gate-mark { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 6vw, 44px);
+  color: var(--cream); letter-spacing: 0.01em; }
+.gate-mark em { font-style: italic; color: var(--koa-glow); }
+.gate-sub { margin-top: 8px; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal-soft); }
+.gate-form { display: flex; gap: 8px; margin-top: 28px; }
+.gate-input { flex: 1; padding: 13px 15px; border-radius: 11px; font-size: 15px; font-family: var(--body);
+  color: var(--cream); background: rgba(243,233,215,0.08); border: 1px solid rgba(243,233,215,0.22);
+  outline: none; transition: border-color 0.2s; }
+.gate-input::placeholder { color: rgba(243,233,215,0.4); }
+.gate-input:focus { border-color: var(--koa-glow); }
+.gate-input.err { border-color: var(--rose); }
+.gate-btn { padding: 13px 18px; border-radius: 11px; font-size: 14.5px; font-weight: 650; color: #2a1607;
+  background: linear-gradient(180deg, var(--koa-glow), var(--koa)); box-shadow: 0 10px 22px -10px rgba(151,87,42,0.8); }
+.gate-btn:hover { filter: brightness(1.05); }
+.gate-err { margin-top: 12px; font-size: 13px; color: var(--rose); }
+.gate-foot { margin-top: 26px; font-size: 11.5px; color: rgba(243,233,215,0.4); }
+
 /* ── Navigation controls card ────────────────────────────── */
 .controls-card { position: fixed; left: clamp(14px,3vw,26px); bottom: clamp(14px,4vh,26px); z-index: 42;
   width: 248px; background: rgba(9,20,20,0.86); color: var(--sand);

@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Experience } from "./three/Experience";
+import { Gate } from "./ui/Gate";
+import { GATE_ENABLED } from "./gate-config";
 import { TopBar } from "./ui/TopBar";
 import { ProductCard } from "./ui/ProductCard";
 import { CartDrawer } from "./ui/CartDrawer";
@@ -22,6 +25,11 @@ export default function App() {
   const invToast = useStore((s) => s.invToast);
   const editing = useStore((s) => s.editing);
   const panelOpen = !!activeId || cartOpen || agentOpen;
+
+  const [unlocked, setUnlocked] = useState(
+    () => !GATE_ENABLED || (typeof localStorage !== "undefined" && localStorage.getItem("hs_unlocked") === "1")
+  );
+  if (GATE_ENABLED && !unlocked) return <Gate onUnlock={() => setUnlocked(true)} />;
 
   return (
     <div className="app">
