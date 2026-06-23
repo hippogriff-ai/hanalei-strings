@@ -15,7 +15,9 @@ export function Gate({ onUnlock }: { onUnlock: () => void }) {
     const hash = await sha256hex(val.trim().toLowerCase());
     if (hash === PASSCODE_HASH) {
       try {
-        localStorage.setItem("hs_unlocked", "1");
+        // store the passcode hash (not a generic flag) so changing the passcode
+        // re-locks everyone — including past visitors who used an old code.
+        localStorage.setItem("hs_unlocked", PASSCODE_HASH);
       } catch {}
       onUnlock();
     } else {
