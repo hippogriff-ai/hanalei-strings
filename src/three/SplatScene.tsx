@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { useThree } from "@react-three/fiber";
 import { Box3 } from "three";
 import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
-import { CATALOG } from "../catalog";
 import { useStore } from "../store";
 
 /**
@@ -49,16 +48,7 @@ export function SplatScene({ src }: { src: string }) {
       cam.position.set(cx, eyeY, cz + span * 0.32);
       cam.lookAt(cx, eyeY, cz); // level / horizontal
       useStore.getState().setSplatSpan(span);
-
-      // seed hotspots out near the WALLS at instrument height so they read as
-      // wall-mounted (just a starting point — fine-tune with the placement tool)
-      const st = useStore.getState();
-      if (Object.keys(st.hotspotPos).length === 0) {
-        CATALOG.forEach((p, i) => {
-          const a = (i / CATALOG.length) * Math.PI * 2;
-          st.setHotspotPos(p.id, [cx + Math.cos(a) * span * 0.44, eyeY + span * 0.06, cz + Math.sin(a) * span * 0.44]);
-        });
-      }
+      // hotspot positions are baked into catalog.ts (placed in-app) — no auto-seed.
     };
     const onInit = mesh.initialized;
     if (onInit && typeof onInit.then === "function") onInit.then(tryFrame).catch(() => {});
