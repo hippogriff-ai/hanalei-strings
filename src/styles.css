@@ -338,6 +338,30 @@ canvas { display: block; }
 .pr-hint { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 40;
   font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(243,233,215,0.6); }
 
+/* ── Navigation controls card ────────────────────────────── */
+.controls-card { position: fixed; left: clamp(14px,3vw,26px); bottom: clamp(14px,4vh,26px); z-index: 42;
+  width: 248px; background: rgba(9,20,20,0.86); color: var(--sand);
+  border: 1px solid rgba(243,233,215,0.16); border-radius: 14px; padding: 13px 15px 12px;
+  box-shadow: 0 16px 40px -16px rgba(0,0,0,0.7); backdrop-filter: blur(12px); }
+.controls-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.controls-head span { font-family: var(--display); font-weight: 500; font-size: 15px; color: var(--cream); letter-spacing: 0.005em; }
+.controls-x { width: 24px; height: 24px; border-radius: 50%; background: rgba(243,233,215,0.1);
+  color: var(--sand); font-size: 12px; display: grid; place-items: center; transition: background 0.2s; }
+.controls-x:hover { background: rgba(243,233,215,0.22); }
+.controls-rows { display: flex; flex-direction: column; gap: 8px; }
+.controls-row { display: flex; align-items: center; gap: 10px; }
+.controls-keys { display: inline-flex; gap: 4px; flex: none; min-width: 96px; }
+.controls-label { font-size: 13px; color: rgba(243,233,215,0.92); line-height: 1.2; }
+.controls-card kbd { font-family: var(--body); font-size: 11.5px; font-weight: 700; color: var(--cream);
+  background: rgba(243,233,215,0.14); border: 1px solid rgba(243,233,215,0.32);
+  border-bottom-width: 2px; border-radius: 6px; padding: 3px 7px; line-height: 1; white-space: nowrap;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.3); }
+.controls-reopen { position: fixed; left: clamp(14px,3vw,26px); bottom: clamp(14px,4vh,26px); z-index: 42;
+  font-size: 12.5px; font-weight: 600; color: var(--cream);
+  background: rgba(9,20,20,0.82); border: 1px solid rgba(243,233,215,0.2); border-radius: 999px;
+  padding: 9px 15px; backdrop-filter: blur(10px); box-shadow: var(--shadow-md); transition: all 0.2s; }
+.controls-reopen:hover { background: rgba(151,87,42,0.55); border-color: var(--koa-glow); }
+
 /* ── Hotspot placement tool ──────────────────────────────── */
 .crosshair { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 44;
   font-size: 34px; line-height: 1; color: var(--koa-glow); pointer-events: none;

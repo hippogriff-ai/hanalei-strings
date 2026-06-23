@@ -50,12 +50,13 @@ export function SplatScene({ src }: { src: string }) {
       cam.lookAt(cx, eyeY, cz); // level / horizontal
       useStore.getState().setSplatSpan(span);
 
-      // seed hotspots in a ring at eye level so they're visible before fine-tuning
+      // seed hotspots out near the WALLS at instrument height so they read as
+      // wall-mounted (just a starting point — fine-tune with the placement tool)
       const st = useStore.getState();
       if (Object.keys(st.hotspotPos).length === 0) {
         CATALOG.forEach((p, i) => {
           const a = (i / CATALOG.length) * Math.PI * 2;
-          st.setHotspotPos(p.id, [cx + Math.cos(a) * span * 0.28, eyeY, cz + Math.sin(a) * span * 0.28]);
+          st.setHotspotPos(p.id, [cx + Math.cos(a) * span * 0.44, eyeY + span * 0.06, cz + Math.sin(a) * span * 0.44]);
         });
       }
     };

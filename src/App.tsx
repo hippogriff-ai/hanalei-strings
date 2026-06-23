@@ -8,6 +8,7 @@ import { GridFallback } from "./ui/GridFallback";
 import { Receipts } from "./ui/Receipts";
 import { ShopifyCheckout } from "./ui/ShopifyCheckout";
 import { EditPanel } from "./ui/EditPanel";
+import { Controls } from "./ui/Controls";
 import { LoadingScreen } from "./ui/LoadingScreen";
 import { useStore } from "./store";
 
@@ -29,9 +30,7 @@ export default function App() {
 
       <TopBar />
 
-      {!editing && view === "world" && (
-        <div className="pr-hint">drag to look · W A S D to walk · scroll to move · click a dot to buy</div>
-      )}
+      {!editing && view === "world" && <Controls />}
 
       <Receipts />
 

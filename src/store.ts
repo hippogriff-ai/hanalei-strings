@@ -3,7 +3,7 @@ import { CATALOG, byId, type Product } from "./catalog";
 import { createCheckout, placeOrder, type Checkout, type Order } from "./mockShopify";
 
 // persistence for user-authored hotspot positions + splat orientation
-const LS_H = "hs_hotspots_v3";
+const LS_H = "hs_hotspots_v4";
 const LS_O = "hs_orient_v2";
 const loadHotspots = (): Record<string, [number, number, number]> => {
   try { return JSON.parse(localStorage.getItem(LS_H) || "{}"); } catch { return {}; }
