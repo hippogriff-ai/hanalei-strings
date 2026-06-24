@@ -4,6 +4,7 @@ import { SplatScene } from "./SplatScene";
 import { Hotspots } from "./Hotspots";
 import { Placer } from "./Placer";
 import { FlyNav } from "./FlyNav";
+import { IS_TOUCH } from "../isTouch";
 
 export function Experience() {
   // hidden override: /#splat=/your.spz swaps the asset without a rebuild.
@@ -14,7 +15,7 @@ export function Experience() {
 
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={IS_TOUCH ? 1 : [1, 1.5]}
       camera={{ fov: 65, near: 0.01, far: 1000, position: [0, 0, 3] }}
       gl={{ antialias: false }}
     >

@@ -1,9 +1,6 @@
 import { useRef, useState } from "react";
 import { useStore } from "../store";
-
-export const IS_TOUCH =
-  typeof window !== "undefined" &&
-  ((window.matchMedia && window.matchMedia("(pointer: coarse)").matches) || "ontouchstart" in window);
+import { IS_TOUCH } from "../isTouch";
 
 /** On-screen movement for phones/tablets: a walk joystick + up/down buttons.
  *  Looking around is one-finger drag anywhere else on the scene (handled by FlyNav). */
@@ -56,6 +53,10 @@ function Joystick() {
       onTouchEnd={end}
       onTouchCancel={end}
     >
+      <span className="joy-arrow up">▲</span>
+      <span className="joy-arrow down">▼</span>
+      <span className="joy-arrow left">◀</span>
+      <span className="joy-arrow right">▶</span>
       <span className="joy-knob" style={{ transform: `translate(${knob.x}px, ${knob.y}px)` }} />
       <span className="joy-label">walk</span>
     </div>

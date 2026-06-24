@@ -409,6 +409,24 @@ canvas { touch-action: none; }
   touch-action: none; user-select: none; -webkit-user-select: none; }
 .vbtns button:active { background: rgba(151,87,42,0.65); border-color: var(--koa-glow); }
 
+/* directional hints around the joystick rim */
+.joy-arrow { position: absolute; color: rgba(243,233,215,0.55); font-size: 11px; line-height: 1; pointer-events: none; }
+.joy-arrow.up { top: 9px; left: 50%; transform: translateX(-50%); }
+.joy-arrow.down { bottom: 9px; left: 50%; transform: translateX(-50%); }
+.joy-arrow.left { left: 11px; top: 50%; transform: translateY(-50%); }
+.joy-arrow.right { right: 11px; top: 50%; transform: translateY(-50%); }
+
+/* ── Mobile top bar (don't let buttons run off-screen) ───── */
+@media (max-width: 640px) {
+  .topbar { padding: 12px 12px; }
+  .topbar .open-chip, .topbar .shopify-pill, .topbar .hide-mobile { display: none; }
+  .brand .mark { font-size: 18px; }
+  .bar-actions { gap: 6px; }
+  .icon-btn { padding: 9px 11px; font-size: 12.5px; }
+  .icon-btn .btn-label { display: none; }
+  .seg button { padding: 6px 11px; font-size: 12px; }
+}
+
 /* ── Hotspot placement tool ──────────────────────────────── */
 .crosshair { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 44;
   font-size: 34px; line-height: 1; color: var(--koa-glow); pointer-events: none;

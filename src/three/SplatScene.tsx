@@ -3,6 +3,7 @@ import { useThree } from "@react-three/fiber";
 import { Box3 } from "three";
 import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
 import { useStore } from "../store";
+import { IS_TOUCH } from "../isTouch";
 
 /**
  * Full-quality Marble (World Labs) splat, rendered with World Labs' own Spark.
@@ -26,7 +27,10 @@ export function SplatScene({ src }: { src: string }) {
     scene.add(spark);
 
     const { splatFlip, splatYaw } = useStore.getState();
-    const mesh: any = new SplatMesh({ url: src });
+    // on phones, enable Spark level-of-detail (renders fewer splats per the device
+    // budget) so the GPU isn't pegged rendering all 2.4M — less heat/battery drain.
+    // Desktop renders the full set.
+    const mesh: any = new SplatMesh(IS_TOUCH ? { url: src, lod: true } : { url: src });
     mesh.rotation.set(splatFlip ? Math.PI : 0, (splatYaw * Math.PI) / 2, 0);
     meshRef.current = mesh;
     scene.add(mesh);

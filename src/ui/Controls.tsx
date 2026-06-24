@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IS_TOUCH } from "./TouchControls";
+import { IS_TOUCH } from "../isTouch";
 
 type Row = { keys: string[]; label: string };
 

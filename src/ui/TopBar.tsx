@@ -24,7 +24,7 @@ export function TopBar() {
       </div>
 
       <div className="bar-actions">
-        <button className="icon-btn" onClick={() => setEditing(true)} title="Pin products onto the shop">
+        <button className="icon-btn hide-mobile" onClick={() => setEditing(true)} title="Pin products onto the shop">
           📍 Place hotspots
         </button>
 
@@ -38,7 +38,7 @@ export function TopBar() {
         </div>
 
         <button className={`icon-btn ${agentOpen ? "active" : ""}`} onClick={() => toggleAgent()} data-tour="agent">
-          ✦ Ask an agent
+          ✦ <span className="btn-label">Ask an agent</span>
         </button>
 
         <button className="icon-btn" onClick={() => toggleCart()} aria-label="Cart">
@@ -47,7 +47,7 @@ export function TopBar() {
             <circle cx="9" cy="20" r="1.3" />
             <circle cx="18" cy="20" r="1.3" />
           </svg>
-          Cart
+          <span className="btn-label">Cart</span>
           {count > 0 && <span className="badge">{count}</span>}
         </button>
       </div>
