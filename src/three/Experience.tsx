@@ -15,7 +15,7 @@ export function Experience() {
 
   return (
     <Canvas
-      dpr={IS_TOUCH ? 1 : [1, 1.5]}
+      dpr={IS_TOUCH ? [1, 2] : [1, 1.5]}
       camera={{ fov: 65, near: 0.01, far: 1000, position: [0, 0, 3] }}
       gl={{ antialias: false }}
     >
